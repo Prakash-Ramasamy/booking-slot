@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Parking</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+	
+	
+	<link rel="stylesheet" type="text/css" href="css/app.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<link rel="stylesheet" href="js/jquery-mobile/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" href="js/waves/waves.min.css" />
+	<link rel="stylesheet" href="js/wow/animate.css" />
+	<link rel="stylesheet" href="css/nativedroid2.css" />
+	<script type="text/javascript" src="cordova.js"></script>
+	<script src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+	
+	
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+</head>
+
+<body>
+
+	<div data-role="page" class="app">
+
+		<!--<nd2-include data-src="/pages/fragments/panel.left.html"></nd2-include>-->
+
+		<!--<div data-role="panel" id="bottomsheet" data-animate="false" data-position='bottom' data-display="overlay">
+			<nd2-include data-src="/pages/fragments/bottom.sheet.html"></nd2-include>
+		</div>-->
+
+		<div data-role="header" data-position="fixed" class="wow fadeInDown" data-wow-delay="0.2s">
+			<!--<a href="#bottomsheet" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='1.2s'><i class="zmdi zmdi-more-vert"></i></a>-->
+			<div href="javascript:;" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'>
+				<img width="36" height="32" src="img/ldpi-icon.png">
+			</div>
+			<h1 class="wow fadeIn" data-wow-delay='0.4s'>Parking</h1>
+		</div>
+
+		<div role="main" class="ui-content" data-inset="false" id="main-content">
+			<p>This app provides the facility to book slot online.</p>
+			<br>
+			<a class="ui-btn ui-btn-raised clr-primary waves-effect waves-button waves-effect waves-button" href="login.html">LOGIN</a>
+			<br>
+			<a class="ui-btn ui-btn-raised clr-primary2 waves-effect waves-button waves-effect waves-button" href="register.html">REGISTER</a>
+		</div>
+
+	</div>
+
+	<script src="js/jquery-ui-1.11.4.min.js"></script>
+	<script src="js/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
+	<script src="js/waves/waves.min.js"></script>
+	<script src="js/wow/wow.min.js"></script>
+	<script src="js/nativedroid2.js"></script>
+	<script src="nd2settings.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Book Slots</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="js/jquery-mobile/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="js/waves/waves.min.css" />
+    <link rel="stylesheet" href="js/wow/animate.css" />
+    <link rel="stylesheet" href="css/nativedroid2.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <style type="text/css">
+        .btnFocus:active
+             {
+                background:olive !important;
+             }
+        .btnFocus:focus
+             {
+                background:olive !important;
+             }
+    </style>
+</head>
+
+<body>
+
+    <div data-role="page" class="nd2-no-menu-swipe">
+
+        <!--<nd2-include data-src="pages/fragments/panel.left.html"></nd2-include>-->
+
+        <div data-role="header" data-position="fixed" class="wow fadeIn">
+            <a href="dashboard.html" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'>
+                <i class="zmdi zmdi-chevron-left"></i>
+            </a>
+            <h1 class="wow fadeIn" data-wow-delay='0.4s'>Book Slots</h1>
+        </div>
+
+        <div role="main" class="ui-content wow fadeIn booking-page" data-inset="false" data-wow-delay="0.2s">                            
+            <table data-role="table" id="book-slots-table" data-mode="" class="ui-responsive table-stroke">                
+                <tbody>
+                    <tr>
+                        <td>Slot 1</td>
+                        <td><button onclick="setSlotID(this.id);" id="btnA1" class="btnFocus">A1</button></td>
+                        <td><button onclick="setSlotID(this.id);" id="btnA1" class="btnFocus">A2</button></td>
+                        <td><button onclick="setSlotID(this.id);" id="btnA1" class="btnFocus">A3</button></td>
+                    </tr>
+                    <tr>
+                        <td>Slot 2</td>
+                        <td><button onclick="setSlotID(this.id);" id="btnB1" class="btnFocus">B1</button></td>
+                        <td><button onclick="setSlotID(this.id);" id="btnB2" class="btnFocus">B2</button></td>
+                        <td><button onclick="setSlotID(this.id);" id="btnB3" class="btnFocus">B3</button></td>
+                    </tr>
+                    <tr>
+                        <td>Slot 3</td>
+                        <td><button onclick="setSlotID(this.id);" id="btnC1" class="btnFocus">C1</button></td>
+                        <td><button onclick="setSlotID(this.id);" id="btnC2" class="btnFocus">C2</button></td>
+                        <td><button onclick="setSlotID(this.id);" id="btnC3" class="btnFocus">C3</button></td>
+                    </tr>                   
+                </tbody>
+            </table>
+            <br>
+            <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="box">
+                            <label for="vehicle_no">Vehicle Number:</label>
+                            <input type="text" name="vehicle_no" id="vehi_no" value="" data-clear-btn="true" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            <br>
+            <a onclick="boolSlotRedirect();" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button waves-effect waves-button" href="javascript:;">Book Slot</a>
+        </div>
+    </div>
+
+    <script src="js/jquery-ui-1.11.4.min.js"></script>
+    <script src="js/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/waves/waves.min.js"></script>
+    <script src="js/wow/wow.min.js"></script>
+    <script src="js/nativedroid2.js"></script>
+    <script src="nd2settings.js"></script>
+    <script>      
+        callback = function(){};
+        checkLogin(callback);        
+    </script>
+    <style>                        
+            body {
+                opacity: 0;
+            }                         
+        </style>
+</body>
+
+</html>

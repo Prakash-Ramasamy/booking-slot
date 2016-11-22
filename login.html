@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="js/jquery-mobile/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="js/waves/waves.min.css" />
+    <link rel="stylesheet" href="js/wow/animate.css" />
+    <link rel="stylesheet" href="css/nativedroid2.css" />
+    <link rel="stylesheet" type="text/css" href="css/app.css" />
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+
+    <style>
+        /* Prevent FOUC */
+        
+        body {
+            opacity: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div data-role="page" class="nd2-no-menu-swipe">
+
+        <!--<nd2-include data-src="pages/fragments/panel.left.html"></nd2-include>-->
+
+        <div data-role="header" data-position="fixed" class="wow fadeIn">
+            <a href="index.html" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'>
+                <i class="zmdi zmdi-chevron-left"></i>
+            </a>
+            <h1 class="wow fadeIn" data-wow-delay='0.4s'>Login</h1>
+        </div>
+
+        <div role="main" class="ui-content wow fadeIn" data-inset="false" data-wow-delay="0.2s">
+            <form method="get" action="" onsubmit="return login(this);" id="signon">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="box">
+                            <label for="username">Username:</label>
+                            <input type="text" name="username" id="username" value="" data-clear-btn="true" placeholder="" >
+                        </div>
+                        <div class="box">
+                            <label for="password">Password:</label>
+                            <input type="password" name="password" id="password" value="" data-clear-btn="true" placeholder="">
+                        </div>
+                        <div class="box">
+                            <label for="submit"></label>
+                            <input type="submit" name="submit" id="submit" value="submit">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+
+    
+    <script src="js/jquery-ui-1.11.4.min.js"></script>
+    <script src="js/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/waves/waves.min.js"></script>
+    <script src="js/wow/wow.min.js"></script>
+    <script src="js/nativedroid2.js"></script>
+    <script src="nd2settings.js"></script>
+</body>
+
+</html>
