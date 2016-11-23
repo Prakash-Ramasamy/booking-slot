@@ -91,6 +91,7 @@ var validation = {
 /*Created by Prakash*/
 function CheckAvailability(){
     setTimeout(function myFunction() {
+        try{
     var slots = JSON.parse(localStorage.bookslot)
     var currentUser = JSON.parse(sessionStorage.logged_user).email;
     var bookedSlots =[];
@@ -102,7 +103,9 @@ function CheckAvailability(){
     for(var i=0;i<bookedSlots.length;i++){
         document.getElementById(bookedSlots[i]).className = "btn-disable-sameuser"    
     }
+        }catch(err){}
 }, 1500)
+    
 }
 function bookSlot() {
     var currentUserInfo = JSON.parse(sessionStorage.logged_user)
@@ -133,7 +136,7 @@ function boolSlotRedirect() {
 
 function registerUser(theForm) {
     var user = {
-        name: $(theForm).find("#name").val(),                       
+        name: $(theForm).find("#name").val(),                   
         email: $(theForm).find("#email").val(),
         mobileNo: $(theForm).find("#mobile_no").val(),
         password: $(theForm).find("#password").val(),
@@ -143,7 +146,7 @@ function registerUser(theForm) {
         return false;
     }
     saveData("users", user);
-    window.location = "login.html?register=1";
+    window.location = "register.html?register=1";
     return false;
 }
 

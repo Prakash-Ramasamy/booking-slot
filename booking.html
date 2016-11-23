@@ -28,31 +28,8 @@
             <h1 class="wow fadeIn" data-wow-delay='0.4s'>Book Slots</h1>
         </div>
 
-        <div role="main" class="ui-content wow fadeIn booking-page" data-inset="false" data-wow-delay="0.2s">                            
-            <table data-role="table" id="book-slots-table" data-mode="" class="ui-responsive table-stroke">                
-                <tbody>
-                    <tr>
-                        <td>Slot 1</td>
-                        <td><button onclick="setSlotID(this.id);" id="btnA1" class="btnFocus">A1</button></td>
-                        <td><button onclick="setSlotID(this.id);" id="btnA1" class="btnFocus">A2</button></td>
-                        <td><button onclick="setSlotID(this.id);" id="btnA1" class="btnFocus">A3</button></td>
-                    </tr>
-                    <tr>
-                        <td>Slot 2</td>
-                        <td><button onclick="setSlotID(this.id);" id="btnB1" class="btnFocus">B1</button></td>
-                        <td><button onclick="setSlotID(this.id);" id="btnB2" class="btnFocus">B2</button></td>
-                        <td><button onclick="setSlotID(this.id);" id="btnB3" class="btnFocus">B3</button></td>
-                    </tr>
-                    <tr>
-                        <td>Slot 3</td>
-                        <td><button onclick="setSlotID(this.id);" id="btnC1" class="btnFocus">C1</button></td>
-                        <td><button onclick="setSlotID(this.id);" id="btnC2" class="btnFocus">C2</button></td>
-                        <td><button onclick="setSlotID(this.id);" id="btnC3" class="btnFocus">C3</button></td>
-                    </tr>                   
-                </tbody>
-            </table>
-            <br>
-            <div class="row">
+        <div role="main" class="ui-content wow fadeIn booking-page" data-inset="false" data-wow-delay="0.2s">
+                <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-4">
                         <div class="box">
                             <label for="vehicle_no">Vehicle Number:</label>
@@ -60,8 +37,7 @@
                         </div>
                     </div>
                 </div>
-            <br>
-            <a onclick="boolSlotRedirect();" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button waves-effect waves-button" href="javascript:;">Book Slot</a>
+            <a id="btnFinalBook" onclick="bookSlot();" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button waves-effect waves-button">Book</a>
         </div>
     </div>
 
@@ -71,9 +47,10 @@
     <script src="js/wow/wow.min.js"></script>
     <script src="js/nativedroid2.js"></script>
     <script src="nd2settings.js"></script>
-    <script>      
+    <script>
         callback = function(){};
-        checkLogin(callback);        
+        checkLogin(callback);
+
     </script>
     <style>                        
             body {

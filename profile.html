@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Register</title>
+    <title>Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <link rel="stylesheet" href="/css/font-awesome.min.css" />
@@ -21,7 +21,14 @@
             opacity: 0;
         }
     </style>
-
+    <script type="text/javascript">
+        var data; 
+        callback = function(){
+            data = JSON.parse(sessionStorage.getItem('logged_user'));
+            //$("#greeting_msg span").html(data.name);
+        };
+        checkLogin(callback);
+    </script>
 </head>
 
 <body>
@@ -31,10 +38,13 @@
         <!--<nd2-include data-src="pages/fragments/panel.left.html"></nd2-include>-->
 
         <div data-role="header" data-position="fixed" class="wow fadeIn">
-            <a href="index.html" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'>
+            <a href="dashboard.html" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'>
                 <i class="zmdi zmdi-chevron-left"></i>
             </a>
-            <h1 class="wow fadeIn" data-wow-delay='0.4s'>Register</h1>
+            <a href="#bottomsheetblock" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s'>
+                <i class="zmdi zmdi-close-circle-o"></i>
+            </a>
+            <h1 class="wow fadeIn" data-wow-delay='0.4s'>Profile</h1>
         </div>
 
         <div role="main" class="ui-content wow fadeIn" data-inset="false" data-wow-delay="0.2s">
@@ -47,25 +57,26 @@
                         <div class="box">
                             <label for="name">Name:</label>
                             <input type="text" name="name" id="name" value="" data-clear-btn="true" placeholder="">
-                        </div>                       
+                        </div>
+                        <div class="box">
+                            <label for="vehicle_no">Vehicle Number:</label>
+                            <input type="text" name="vehicle_no" id="vehicle_no" value="" data-clear-btn="true" placeholder="">
+                        </div>
                         <div class="box">
                             <label for="email">Email:</label>
-                            <input type="text" name="email" id="email" value="" data-clear-btn="true" placeholder="" >
+                            <input type="text" name="email" id="email" value="" data-clear-btn="true" placeholder="">
                         </div>
                         <div class="box">
                             <label for="mobile_no">Mobile Number:</label>
-                            <input type="number" name="mobile_no" id="mobile_no" value="" data-clear-btn="true" placeholder=""
-                                >
+                            <input type="number" name="mobile_no" id="mobile_no" value="" data-clear-btn="true" placeholder="">
                         </div>
                         <div class="box">
                             <label for="password">Password:</label>
-                            <input type="password" name="password" id="password" value="" data-clear-btn="true" placeholder=""
-                                >
+                            <input type="password" name="password" id="password" value="" data-clear-btn="true" placeholder="">
                         </div>
                         <div class="box">
                             <label for="cpassword">Confirm Password:</label>
-                            <input type="password" name="cpassword" id="cpassword" value="" data-clear-btn="true" placeholder=""
-                                >
+                            <input type="password" name="cpassword" id="cpassword" value="" data-clear-btn="true" placeholder="">
                         </div>
                         <div class="box">
                             <label for="submit"></label>
@@ -82,7 +93,7 @@
 
     </div>
 
-    
+
     <script src="js/jquery-ui-1.11.4.min.js"></script>
     <script src="js/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/waves/waves.min.js"></script>

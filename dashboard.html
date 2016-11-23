@@ -4,7 +4,7 @@
 <head>
     <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    
+
     <link rel="stylesheet" href="css/font-awesome.min.css" />
     <link rel="stylesheet" href="js/jquery-mobile/jquery.mobile-1.4.5.min.css" />
     <link rel="stylesheet" href="js/waves/waves.min.css" />
@@ -19,6 +19,9 @@
         
         body {
             opacity: 0;
+        }
+        .extra-lg-btn {
+            padding: 30px 0;
         }
     </style>
 
@@ -37,19 +40,61 @@
 
         <!--<nd2-include data-src="pages/fragments/panel.left.html"></nd2-include>-->
 
-        <div data-role="header" data-position="fixed" class="wow fadeIn">
+            <div data-role="header" data-position="fixed" class="wow fadeIn">
             <div href="javascript:;" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'>
-				<img width="36" height="32" src="img/ldpi-icon.png">
-			</div>
+                <img width="36" height="32" src="img/ldpi-icon.png">
+            </div>
+            
             <h1 class="wow fadeIn" data-wow-delay='0.4s'>Dashboard</h1>
         </div>
 
         <div role="main" class="ui-content wow fadeIn" data-inset="false" data-wow-delay="0.2s">
             <h3 id="greeting_msg">Welcome <span class="name">user</span></h3>
             <br>
-            <a onclick="CheckAvailability();" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button waves-effect waves-button" href="book-slots.html">Check Availability</a>
+
+            <ul data-role="listview" data-icon="false">
+                <li>
+                    <a onclick="CheckAvailability();" href="book-slots.html">
+                        <img src="img/right-check-mark.jpg" class="ui-thumbnail ui-thumbnail-circular" />
+                        <h2>Check Availability</h2>
+                        <p>Check and book slots</p>
+                    </a>
+                </li>
+            </ul>
+
             <br>
-            <a class="ui-btn ui-btn-raised clr-warning waves-effect waves-button waves-effect waves-button" href="javascript:logout();">LOGOUT</a>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="nd2-card">
+                        <a href="previous-bookings.html" class="ui-btn clr-btn-indigo extra-lg-btn ui-btn-icon-block waves-effect waves-button waves-effect waves-button">
+                            <i class="zmdi zmdi-file-text"></i> Your Bookings
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="nd2-card">
+                        <a href="profile.html" class="ui-btn clr-btn-blue-grey extra-lg-btn ui-btn-icon-block waves-effect waves-button waves-effect waves-button">
+                            <i class="zmdi zmdi-account-o"></i> Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="nd2-card">
+                        <a href="wallet.html" class="ui-btn clr-btn-green ui-btn-icon-block extra-lg-btn waves-effect waves-button waves-effect waves-button">
+                            <i class="zmdi zmdi-balance-wallet"></i> Wallet
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="nd2-card">
+                        <a href="javascript:logout();" class="ui-btn  clr-warning extra-lg-btn ui-btn-raised ui-btn-icon-block waves-effect waves-button waves-effect waves-button">
+                            <i class="zmdi zmdi-close-circle-o"></i> Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

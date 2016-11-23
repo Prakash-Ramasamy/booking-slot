@@ -102,6 +102,7 @@ h1 {
     -webkit-animation:fade 3000ms infinite;
 }
 
+
 .btn-disable-sameuser
         {
         cursor: not-allowed;
@@ -112,8 +113,6 @@ h1 {
         background-color: red;
 
         }
-
-
 
             #book-slots-table td {
                 padding: 20px 10px;
