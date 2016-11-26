@@ -13,7 +13,6 @@
     <link rel="stylesheet" type="text/css" href="css/app.css" />
     <script src="js/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="/js/app.js"></script>
-
     <style>
         /* Prevent FOUC */
         
@@ -25,18 +24,98 @@
         var data; 
         callback = function(){
             data = JSON.parse(sessionStorage.getItem('logged_user'));
+            $("#name").val(data.name);
+            $("#email").val(data.email);
+            $("#mobile_no").val(data.mobileNo);
             //$("#greeting_msg span").html(data.name);
         };
         checkLogin(callback);
+        
+        //move the below to app.js
+        
+        $(document).on("popupafteropen", "#popupDialog",function( event, ui ) {
+            resetCPasswdForm();
+        }); 
+        
+        function resetCPasswdForm(){
+            var theForm = $("#cpasswd_form");
+            theForm.find("#opassword").val("");
+            theForm.find("#password").val("");
+            theForm.find("#cpassword").val("");            
+        }
+        
+        function updatePassword(){
+            var theForm = $("#cpasswd_form");
+            var key = "users";
+            var usernameField = "email";
+            var data = localStorage.getItem(key);
+            var userData = sessionStorage.getItem("logged_user");
+            jsonData = JSON.parse(data);
+            var user =  JSON.parse(userData);
+            var opasswd = theForm.find("#opassword").val();
+            console.log( opasswd +" --- " + user.password);
+            if(opasswd != user.password){
+                alert("Wrong Password");
+                return false;
+            } else {
+                user.password = theForm.find("#password").val();
+                user.cpassword = theForm.find("#cpassword").val();
+                if(user.password == "" || user.password != user.cpassword){
+                    alert("Password empty or doesnt match");
+                    return false;
+                }            
+                console.log(opasswd);
+                console.log(user);
+                updateData("users", "email", user.email, user);
+                var userStrData = JSON.stringify(user);
+                sessionStorage.setItem("logged_user", userStrData);
+                $("#popupDialog").popup("close"); 
+            }
+            return validUser;
+        }
+        
+        function updateProfile() {
+            var theForm = $("#profile_form");
+            var key = "users";
+            var usernameField = "email";
+            var data = localStorage.getItem(key);
+            var userData = sessionStorage.getItem("logged_user");
+            jsonData = JSON.parse(data);
+            var user =  JSON.parse(userData);
+            user.name = theForm.find("#name").val();
+            user.mobileNo = theForm.find("#mobile_no").val();
+            updateData("users", "email", user.email, user);
+            var userStrData = JSON.stringify(user);
+            sessionStorage.setItem("logged_user", userStrData);
+            return validUser;
+        }
+
+        ///update field - item, key, obj
+        function updateData(item, key, value, obj){
+            var data = localStorage.getItem(item);
+            if (data == null) {
+                return false;
+            } else {
+                jsonData = JSON.parse(data);
+                $(jsonData).each(function (i, e) {
+                    if (e[key] == value) {
+                        //update the data
+                        jsonData[i] = obj;
+                        //double checking the primary field
+                        jsonData[i][key] = value;
+                    }
+                });
+                jsonStrData = JSON.stringify(jsonData);
+                localStorage.setItem(key, jsonStrData);
+                return jsonData;
+            }
+        }
     </script>
 </head>
 
 <body>
-
     <div data-role="page" class="nd2-no-menu-swipe">
-
         <!--<nd2-include data-src="pages/fragments/panel.left.html"></nd2-include>-->
-
         <div data-role="header" data-position="fixed" class="wow fadeIn">
             <a href="dashboard.html" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'>
                 <i class="zmdi zmdi-chevron-left"></i>
@@ -48,52 +127,105 @@
         </div>
 
         <div role="main" class="ui-content wow fadeIn" data-inset="false" data-wow-delay="0.2s">
+            <!--<div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4">
+                    <div class="card">
+                        <div class="text-center">
+                            <a href="#"><img src="http://bootsnipp.com/img/logo.jpg" class="img-circle"/></a>
+                            <h3 class="text-center">Bootsnipp User</h3>
+                        </div>
+                        <div class="tab-content">
+                        <div class="tab-pane fade in active" id="home">
+                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla</p>
+                        </div>
+                        <div class="tab-pane fade" id="profile">
+                        <p>Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+                        </div>
+                        <div class="tab-pane fade" id="messages">
+                        <p>Raw denim you probably haven't heard of them jean shorts Austin.</p>
+                        </div>
+                        </div>
+                        
+                        <ul class="nav nav-tabs nav-tab nav-justified" id="myTab">
+                        <li class="active"><a class="tab-btn" href="#home" data-toggle="tab">asdf</a></li>
+                        <li><a class="tab-btn" href="#profile" data-toggle="tab">asdf</a></li>
+                        <li><a class="tab-btn" href="#messages" data-toggle="tab">asdf</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>-->
 
+            <div class="nd2-sidepanel-profile wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                <img class="profile-background" src="//lorempixel.com/400/200/abstract/2/">
+                <div class="row">
+                    <div class="col-xs-12 center-xs">
+                        <div class="box ">
+                            <img class="profile-thumbnail" src="img/no_profile.png" style="max-width:100px">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <form method="get" action="" onsubmit="return registerUser(this);" id="register">
-
+            <form method="get" action="" onsubmit="return updateProfile(this);" id="profile_form">
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-4">
                         <div class="box">
                             <label for="name">Name:</label>
                             <input type="text" name="name" id="name" value="" data-clear-btn="true" placeholder="">
                         </div>
-                        <div class="box">
+                        <!--<div class="box">
                             <label for="vehicle_no">Vehicle Number:</label>
                             <input type="text" name="vehicle_no" id="vehicle_no" value="" data-clear-btn="true" placeholder="">
-                        </div>
+                        </div>-->
                         <div class="box">
                             <label for="email">Email:</label>
-                            <input type="text" name="email" id="email" value="" data-clear-btn="true" placeholder="">
+                            <input type="text" name="email" id="email" value="" data-clear-btn="true" placeholder="" readonly>
                         </div>
                         <div class="box">
                             <label for="mobile_no">Mobile Number:</label>
                             <input type="number" name="mobile_no" id="mobile_no" value="" data-clear-btn="true" placeholder="">
                         </div>
                         <div class="box">
-                            <label for="password">Password:</label>
-                            <input type="password" name="password" id="password" value="" data-clear-btn="true" placeholder="">
+                            <label for="submit"></label>
+                            <a href="javascript:updateProfile(this);" class="ui-btn clr-btn-blue-grey extra-lg-btn waves-effect waves-button waves-effect waves-button">
+                                <i class="zmdi zmdi-account-o"></i> Update Profile
+                            </a>
                         </div>
-                        <div class="box">
-                            <label for="cpassword">Confirm Password:</label>
-                            <input type="password" name="cpassword" id="cpassword" value="" data-clear-btn="true" placeholder="">
-                        </div>
+                        <br>
                         <div class="box">
                             <label for="submit"></label>
-                            <input type="submit" name="submit" id="submit" value="submit">
+                            <a href="#popupDialog" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop" class="changePasswdPopup ui-btn clr-btn-grey extra-lg-btn waves-effect waves-button waves-effect waves-button">
+                                <i class="zmdi zmdi-account-o"></i> Change Password
+                            </a>
                         </div>
-
                     </div>
                 </div>
-
             </form>
-
-
+            <div data-role="popup" id="popupDialog">
+                <div data-role="header">
+                	<h1 class='nd-title'>Change Password</h1>
+            	</div>
+                <div data-role="content">
+                    <form method="get" action="" onsubmit="return updatePassword();" id="cpasswd_form">
+                        <div class="box">
+                            <label for="passwd">Old Password:</label>
+                            <input type="password" name="opassword" id="opassword" value="" data-clear-btn="true" placeholder="" >
+                        </div>
+                        <div class="box">
+                            <label for="passwd">New Password:</label>
+                            <input type="password" name="password" id="password" value="" data-clear-btn="true" placeholder="" >
+                        </div>
+                        <div class="box">
+                            <label for="cpasswd">Confirm Password:</label>
+                            <input type="password" name="cpassword" id="cpassword" value="" data-clear-btn="true" placeholder="">
+                        </div>
+                    </form>
+                    <a href="javascript:updatePassword()" data-role="button" data-inline="true" class="ui-btn ui-btn-primary"><i class='zmdi zmdi-check'></i> Change</a>
+                    <a data-rel="back" data-role="button" data-inline="true" class="ui-btn ui-btn-primary"><i class='zmdi zmdi-cancel'></i> Cancel</a>
+                </div>
+            </div>
         </div>
-
     </div>
-
-
     <script src="js/jquery-ui-1.11.4.min.js"></script>
     <script src="js/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/waves/waves.min.js"></script>
