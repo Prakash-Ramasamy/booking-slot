@@ -48,7 +48,7 @@
         </div>
 
         <div role="main" class="ui-content wow fadeIn" data-inset="false" data-wow-delay="0.2s">
-            
+
             <div class="nd2-sidepanel-profile wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
                 <div class="row">
                     <div class="col-xs-4 center-xs">
@@ -64,9 +64,22 @@
                     </div>
                 </div>
             </div>
+            <h4>Add Money to Wallet</h4>
+            <form method="get" action="" onsubmit="return addMoneyToWallet(this);" id="addMoneyWalletForm">
 
-            
-
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="box">
+                            <label for="name">Amount:</label>
+                            <input type="number" name="amount" id="wallet_amount_to_add" value="" data-clear-btn="true" placeholder="" required>
+                        </div>
+                        <div class="box">
+                            <label for="submit"></label>
+                            <button type="submit" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button waves-effect waves-button">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
 
         </div>
 

@@ -449,6 +449,26 @@ function updateProfile() {
     return validUser;
 }
 
+
+function addMoneyToWallet(theForm){
+    var theForm = $("#addMoneyWalletForm");
+    var key = "users";
+    var usernameField = "email";
+    var data = localStorage.getItem(key);
+    var userData = sessionStorage.getItem("logged_user");
+    jsonData = JSON.parse(data);
+    var user = JSON.parse(userData);
+    debugger;    
+    var amount = user.wallet;
+    var addedAmount = theForm.find("#wallet_amount_to_add").val();
+    var updatedAmount = parseInt(amount) + parseInt(addedAmount);
+    user.wallet = updatedAmount;  
+    updateData("users", "email", user.email, user);
+    var userStrData = JSON.stringify(user);
+    sessionStorage.setItem("logged_user", userStrData);
+    showToast("Wallet updated successfully!", "Cancel", "lime");
+}
+
 ///update field - item, key, obj
 function updateData(item, key, value, obj) {
     var data = localStorage.getItem(item);
