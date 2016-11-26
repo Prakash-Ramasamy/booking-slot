@@ -349,13 +349,13 @@ function updatePassword() {
     var opasswd = theForm.find("#opassword").val();
     console.log(opasswd + " --- " + user.password);
     if (opasswd != user.password) {
-        alert("Wrong Password");
+        showToast("Wrong Password", "Cancel", "lime");
         return false;
     } else {
         user.password = theForm.find("#password").val();
         user.cpassword = theForm.find("#cpassword").val();
         if (user.password == "" || user.password != user.cpassword) {
-            alert("Password empty or doesnt match");
+            showToast("Password empty or doesnt match", "Cancel", "lime");
             return false;
         }
         console.log(opasswd);
@@ -364,6 +364,7 @@ function updatePassword() {
         var userStrData = JSON.stringify(user);
         sessionStorage.setItem("logged_user", userStrData);
         $("#popupDialog").popup("close");
+        showToast("Password updated successfully!", "Cancel", "lime");
     }
     return validUser;
 }
@@ -381,6 +382,8 @@ function updateProfile() {
     updateData("users", "email", user.email, user);
     var userStrData = JSON.stringify(user);
     sessionStorage.setItem("logged_user", userStrData);
+    showToast("Profile updated successfully!", "Cancel", "lime");
+        
     return validUser;
 }
 
@@ -407,6 +410,16 @@ function updateData(item, key, value, obj) {
 
 function timeoutCallback(callback) {
     setTimeout(callback(), 1500);
+}
+
+function loadProfilePage(){
+    setInterval(function(){
+        data = JSON.parse(sessionStorage.getItem('logged_user'));
+        console.log(data);
+        $("#name").val(data.name);
+        $("#email").val(data.email);
+        $("#mobile_no").val(data.mobileNo);    
+    }, 1500);
 }
 
 function compileListView() {
@@ -439,7 +452,6 @@ $(document).bind("pageload", function (event, data) {
         console.log("Profile page");
         var callback = function () {
             data = JSON.parse(sessionStorage.getItem('logged_user'));
-
             console.log(data);
             $("#name").val(data.name);
             $("#email").val(data.email);
