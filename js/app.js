@@ -18,6 +18,7 @@
  */
 
 var selectedSlot = '';
+var selectedMyBookingID = '';
 
 var app = {
     deviceReadyCallbacks: function () {
@@ -93,6 +94,47 @@ var validation = {
 };
 
 /*Created by Prakash*/
+var MapData  =  {"data":
+[
+    {key : "btnA1", lat: '12.8399389', lon: '77.67700309999998' },
+    {key : "btnA2", lat: '12.8399389', lon: '77.67700309999998' },
+    {key : "btnA3", lat: '12.8399389', lon: '77.67700309999998' },
+    {key : "btnB1", lat: '12.9244644', lon: '77.6102497' },
+    {key : "btnB2", lat: '12.9244644', lon: '77.6102497' },
+    {key : "btnB3", lat: '12.9244644', lon: '77.6102497' },
+    {key : "btnC1", lat: '12.9426275', lon: '77.6288552' },
+    {key : "btnC2", lat: '12.9426275', lon: '77.6288552' },
+    {key : "btnC3", lat: '12.9426275', lon: '77.6288552' }
+
+]}
+
+function Map() {
+    var lat = "";
+    var lng = "";
+    for (var i = 0; i < MapData.data.length; i++) {
+        if (MapData.data[i].key == selectedMyBookingID) {
+            lat = MapData.data[i].lat;
+            lng = MapData.data[i].lon;
+            break;
+        }
+    }
+    window.open('http://maps.google.com?daddr=' + lat + ',' + lng + '&amp;ll=');
+}
+
+function CancelSlot() {
+    try {
+        var json = JSON.parse(localStorage.bookslot)
+        var currentUser = JSON.parse(sessionStorage.logged_user).email;
+        for (var i = 0; i < json.length; i++) {
+            if (json[i].userName == currentUser && json[i].slotID == selectedMyBookingID) {
+                json.splice(i, 1);
+                localStorage.bookslot = JSON.stringify(json);
+            }
+        }
+        compileListViewWOTimer();
+    } catch (err) { }
+}
+
 function CheckAvailability() {
     setTimeout(function myFunction() {
         try {
@@ -145,6 +187,26 @@ function boolSlotRedirect() {
     var veh_no = $("#vehi_no").val();
     window.location = "pay.html?id=" + selectedSlot + "&veh_no=" + veh_no;
 }
+
+function getSlotID(id) {
+    selectedMyBookingID = id;
+}
+
+function compileListViewWOTimer() {
+        // Grab the template script
+        var theTemplateScript = $("#list-template").html();
+        // Compile the template
+        var theTemplate = Handlebars.compile(theTemplateScript);
+        // Define our data object
+        var context = localStorage.getItem('bookslot');
+        var contextJson = JSON.parse(context);
+        // Pass our data to the template
+        var theCompiledHtml = theTemplate(contextJson);
+        // Add the compiled html to the page
+        console.log(theCompiledHtml);
+        $('#list-view-content').html(theCompiledHtml);
+}
+
 /*Created by Prakash*/
 
 function registerUser(theForm) {
@@ -418,7 +480,18 @@ function loadProfilePage(){
         console.log(data);
         $("#name").val(data.name);
         $("#email").val(data.email);
-        $("#mobile_no").val(data.mobileNo);    
+        $("#mobile_no").val(data.mobileNo);
+        
+        $(".profile-name").html(data.name);
+        $(".profile-wallet-amount").html(data.wallet);    
+    }, 1500);
+}
+
+function loadWalletPage(){
+    setInterval(function(){
+        data = JSON.parse(sessionStorage.getItem('logged_user'));
+        console.log(data);
+        $(".walletpage-wallet-amount").html("Rs " + data.wallet);    
     }, 1500);
 }
 

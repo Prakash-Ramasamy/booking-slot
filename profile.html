@@ -47,39 +47,18 @@
         </div>
 
         <div role="main" class="ui-content wow fadeIn" data-inset="false" data-wow-delay="0.2s">
-            <!--<div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4">
-                    <div class="card">
-                        <div class="text-center">
-                            <a href="#"><img src="http://bootsnipp.com/img/logo.jpg" class="img-circle"/></a>
-                            <h3 class="text-center">Bootsnipp User</h3>
-                        </div>
-                        <div class="tab-content">
-                        <div class="tab-pane fade in active" id="home">
-                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla</p>
-                        </div>
-                        <div class="tab-pane fade" id="profile">
-                        <p>Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
-                        </div>
-                        <div class="tab-pane fade" id="messages">
-                        <p>Raw denim you probably haven't heard of them jean shorts Austin.</p>
-                        </div>
-                        </div>
-                        
-                        <ul class="nav nav-tabs nav-tab nav-justified" id="myTab">
-                        <li class="active"><a class="tab-btn" href="#home" data-toggle="tab">asdf</a></li>
-                        <li><a class="tab-btn" href="#profile" data-toggle="tab">asdf</a></li>
-                        <li><a class="tab-btn" href="#messages" data-toggle="tab">asdf</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>-->
 
             <div class="nd2-sidepanel-profile wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
                 <div class="row">
-                    <div class="col-xs-12 center-xs">
+                    <div class="col-xs-4 center-xs">
                         <div class="box ">
                             <img class="profile-thumbnail" src="img/no_profile.png" style="max-width:100px">
+                        </div>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="box profile-text">
+                            <strong class="profile-name"></strong>
+                            <span class="subline">Wallet : INR <span class="profile-wallet-amount"></span></span>
                         </div>
                     </div>
                 </div>
@@ -113,7 +92,8 @@
                         <br>
                         <div class="box">
                             <label for="submit"></label>
-                            <a href="#popupDialog" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop" class="changePasswdPopup ui-btn clr-btn-grey extra-lg-btn waves-effect waves-button waves-effect waves-button">
+                            <a href="#popupDialog" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop"
+                                class="changePasswdPopup ui-btn clr-btn-grey extra-lg-btn waves-effect waves-button waves-effect waves-button">
                                 <i class="zmdi zmdi-account-o"></i> Change Password
                             </a>
                         </div>
@@ -122,17 +102,17 @@
             </form>
             <div data-role="popup" id="popupDialog">
                 <div data-role="header">
-                	<h1 class='nd-title'>Change Password</h1>
-            	</div>
+                    <h1 class='nd-title'>Change Password</h1>
+                </div>
                 <div data-role="content">
                     <form method="get" action="" onsubmit="return updatePassword();" id="cpasswd_form">
                         <div class="box">
                             <label for="passwd">Old Password:</label>
-                            <input type="password" name="opassword" id="opassword" value="" data-clear-btn="true" placeholder="" >
+                            <input type="password" name="opassword" id="opassword" value="" data-clear-btn="true" placeholder="">
                         </div>
                         <div class="box">
                             <label for="passwd">New Password:</label>
-                            <input type="password" name="password" id="password" value="" data-clear-btn="true" placeholder="" >
+                            <input type="password" name="password" id="password" value="" data-clear-btn="true" placeholder="">
                         </div>
                         <div class="box">
                             <label for="cpasswd">Confirm Password:</label>

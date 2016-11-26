@@ -23,6 +23,7 @@
         }
     </style>
     <script type="text/javascript">
+    var currentID = '';
         var data; 
         callback = function(){
             data = JSON.parse(sessionStorage.getItem('logged_user'));
@@ -42,7 +43,7 @@
             <a href="dashboard.html" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'>
                 <i class="zmdi zmdi-chevron-left"></i>
             </a>
-            <a href="#bottomsheetblock" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s'>
+            <a onclick="javascript:logout();" href="#bottomsheetblock" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s'>
                 <i class="zmdi zmdi-close-circle-o"></i>
             </a>
             <h1 class="wow fadeIn" data-wow-delay='0.4s'>Your Bookings</h1>
@@ -50,11 +51,11 @@
         <script id="list-template" type="text/x-handlebars-template">
             {{#each this}}
             <li class="ui-li-has-thumb ui-first-child ui-last-child">
-                <a href="#orderactions" class="ui-btn waves-effect waves-button">
+                <a onclick="javascript:getSlotID('{{slotID}}')" href="#orderactions" class="ui-btn waves-effect waves-button">
                     <img src="img/parking-icon.png" class="ui-thumbnail ui-thumbnail-circular">
                     <h2>{{vehicleNo}}</h2>
                     <p>{{bookinTime}}</p>
-                </a>
+                </a>            
             </li>
             {{/each}}
         </script>
@@ -62,10 +63,10 @@
             data-display="overlay">
             <div class='row around-xs'>
                 <div class='col-xs-auto'>
-                    <a href='#' class='ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button waves-effect waves-button' data-ajax='false'><i class='zmdi zmdi-directions zmd-2x'></i><strong>Get Route</strong></a>
+                    <a href='#' onclick="javascript:Map();" class='ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button waves-effect waves-button' data-ajax='false'><i class='zmdi zmdi-directions zmd-2x'></i><strong>Get Route</strong></a>
                 </div>
                 <div class='col-xs-auto'>
-                    <a href='#' class='ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button waves-effect waves-button' data-ajax='false'><i class='zmdi zmdi-close-circle zmd-2x'></i><strong>Cancel</strong></a>
+                    <a href='#' onclick="javascript:CancelSlot();" class='ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button waves-effect waves-button' data-ajax='false'><i class='zmdi zmdi-close-circle zmd-2x'></i><strong>Cancel</strong></a>
                 </div>
             </div>
         </div>
