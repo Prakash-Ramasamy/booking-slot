@@ -105,7 +105,9 @@ function CheckAvailability() {
                 }
             }
             for (var i = 0; i < bookedSlots.length; i++) {
-                document.getElementById(bookedSlots[i]).className = "btn-disable-sameuser"
+                console.log(bookedSlots[i] +" - already booked")
+                $("#" + bookedSlots[i]).addClass("btn-disable-sameuser").removeClass("ui-shadow").removeClass("ui-corner-all waves-effect waves-button");
+                $("#" + bookedSlots[i]).closest("td").addClass('booked');
             }
         } catch (err) { }
     }, 1500)
@@ -129,7 +131,14 @@ function bookSlot() {
 }
 
 function setSlotID(id) {
+    console.log(id);
     selectedSlot = id;
+    if(!$("#"+id).hasClass("booked")){
+        $(".btnFocus").each(function(i, e){
+            $(e).closest("td").removeClass("tempBooked");
+        })
+        $("#"+id).closest("td").addClass("tempBooked");
+    }
 }
 
 function boolSlotRedirect() {

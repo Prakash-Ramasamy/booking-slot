@@ -135,7 +135,7 @@ h1 {
             }
 
 
-            .booking-page .btnFocus:active, .booking-page .btnFocus:hover
+            .booking-page .btnFocus:active, .booking-page .btnFocus:hover, #book-slots-table tbody td.tempBooked 
              {
                 background:olive !important;
              }
@@ -156,3 +156,20 @@ h1 {
               .ui-page {
                 background: url("../img/bg3.jpg");     
              }
+             
+             .colorRef.red {
+                padding: 0px 5px;
+                border: 1px solid red;
+                background: red;
+            }
+             .colorRef.green {
+                padding: 0px 5px;
+                border: 1px solid green;
+                background: green;
+            }
+             .colorRef.olive {
+                padding: 0px 5px;
+                border: 1px solid olive ;
+                background: olive;
+            }
+            

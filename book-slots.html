@@ -28,26 +28,38 @@
             <h1 class="wow fadeIn" data-wow-delay='0.4s'>Book Slots</h1>
         </div>
 
-        <div role="main" class="ui-content wow fadeIn booking-page" data-inset="false" data-wow-delay="0.2s">                            
+        <div role="main" class="ui-content wow fadeIn booking-page" data-inset="false" data-wow-delay="0.2s">
+            <br>
+            <ul data-role="listview" data-icon="false" class="ui-listview" style="text-align:center;">
+                </li>
+                    <span class="colorRef red">&nbsp;</span> Booked
+                </li>
+                </li>
+                    <span class="colorRef green">&nbsp;</span> Available 
+                </li>
+                </li>
+                    <span class="colorRef olive">&nbsp;</span> Selected 
+                </li>
+            </ul>                            
             <table data-role="table" id="book-slots-table" data-mode="" class="ui-responsive table-stroke">                
                 <tbody>
                     <tr>
                         <td>Slot 1</td>
-                        <td><button onclick="setSlotID(this.id);" id="btnA1" class="btnFocus">A1</button></td>
-                        <td><button onclick="setSlotID(this.id);" id="btnA1" class="btnFocus">A2</button></td>
-                        <td><button onclick="setSlotID(this.id);" id="btnA1" class="btnFocus">A3</button></td>
+                        <td><button onclick="setSlotID(this.id);" id="btnA1" class="btnFocus ui-btn">A1</button></td>
+                        <td><button onclick="setSlotID(this.id);" id="btnA2" class="btnFocus ui-btn">A2</button></td>
+                        <td><button onclick="setSlotID(this.id);" id="btnA3" class="btnFocus ui-btn">A3</button></td>
                     </tr>
                     <tr>
                         <td>Slot 2</td>
-                        <td><button onclick="setSlotID(this.id);" id="btnB1" class="btnFocus">B1</button></td>
-                        <td><button onclick="setSlotID(this.id);" id="btnB2" class="btnFocus">B2</button></td>
-                        <td><button onclick="setSlotID(this.id);" id="btnB3" class="btnFocus">B3</button></td>
+                        <td><button onclick="setSlotID(this.id);" id="btnB1" class="btnFocus ui-btn">B1</button></td>
+                        <td><button onclick="setSlotID(this.id);" id="btnB2" class="btnFocus ui-btn">B2</button></td>
+                        <td><button onclick="setSlotID(this.id);" id="btnB3" class="btnFocus ui-btn">B3</button></td>
                     </tr>
                     <tr>
                         <td>Slot 3</td>
-                        <td><button onclick="setSlotID(this.id);" id="btnC1" class="btnFocus">C1</button></td>
-                        <td><button onclick="setSlotID(this.id);" id="btnC2" class="btnFocus">C2</button></td>
-                        <td><button onclick="setSlotID(this.id);" id="btnC3" class="btnFocus">C3</button></td>
+                        <td><button onclick="setSlotID(this.id);" id="btnC1" class="btnFocus ui-btn">C1</button></td>
+                        <td><button onclick="setSlotID(this.id);" id="btnC2" class="btnFocus ui-btn">C2</button></td>
+                        <td><button onclick="setSlotID(this.id);" id="btnC3" class="btnFocus ui-btn">C3</button></td>
                     </tr>                   
                 </tbody>
             </table>
