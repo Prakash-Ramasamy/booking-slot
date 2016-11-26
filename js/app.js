@@ -27,6 +27,10 @@ var app = {
     initialize: function () {
         $("#main-content").hide();
         this.bindEvents();
+        //bind no cache for dom
+        $(document).bind("mobileinit", function(){
+            $.mobile.page.prototype.options.domCache = false;
+        });
     },
     // Bind Event Listeners
     //
@@ -385,3 +389,10 @@ function updateData(item, key, value, obj) {
         return jsonData;
     }
 }
+
+$( document ).bind( "pageload", function( event, data ){
+    console.log("---------------------");
+    console.log(event, data);
+    console.log(data.dataUrl + " - page loaded ");
+    //have to move all page load events
+});
