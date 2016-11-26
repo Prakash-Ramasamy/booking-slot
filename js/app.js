@@ -218,7 +218,7 @@ function login(theForm) {
     }
     if (checkCreds(username, password)) {
         //valid Log-in
-        if(username == "admin"){
+        if (username == "admin") {
             window.location = "admin-dashboard.html?login=1";
         } else {
             window.location = "dashboard.html?login=1";
@@ -396,18 +396,41 @@ function updateData(item, key, value, obj) {
     }
 }
 
-function timeoutCallback(callback){
+function timeoutCallback(callback) {
     setTimeout(callback(), 1500);
 }
 
+function compileListView() {
+    setTimeout(function () {
+        // Grab the template script
+        var theTemplateScript = $("#list-template").html();
+        // Compile the template
+        var theTemplate = Handlebars.compile(theTemplateScript);
+        // Define our data object
+        var context = localStorage.getItem('bookslot');
+        var contextJson = JSON.parse(context);
+        // Pass our data to the template
+        var theCompiledHtml = theTemplate(contextJson);
+        // Add the compiled html to the page
+        console.log(theCompiledHtml);
+        $('#list-view-content').html(theCompiledHtml);
+    }, 1500);
+}
+
+$(document).bind("pageshow", function (event, data) {
+    console.log("---------------------");
+    console.log(event, data);
+    console.log("  page show ");
+});
 $(document).bind("pageload", function (event, data) {
     console.log("---------------------");
     console.log(event, data);
     console.log(data.dataUrl + " - page loaded ");
     if (data.dataUrl.search('profile') > 0) {
         console.log("Profile page");
-        var callback = function(){                
+        var callback = function () {
             data = JSON.parse(sessionStorage.getItem('logged_user'));
+
             console.log(data);
             $("#name").val(data.name);
             $("#email").val(data.email);
@@ -416,7 +439,7 @@ $(document).bind("pageload", function (event, data) {
         timeoutCallback(callback);
     } else if (data.dataUrl.search('login') > 0) {
         //insert admin record
-        if(!checkCreds("admin", "admin")){
+        if (!checkCreds("admin", "admin")) {
             var adminUser = {
                 name: "Admin",
                 email: "admin",
@@ -426,7 +449,9 @@ $(document).bind("pageload", function (event, data) {
                 isAdmin: 1,
                 wallet: 50
             };
-            saveData("users", adminUser);         
-        }     
+            saveData("users", adminUser);
+        }
+    } else if (data.dataUrl.search('previous-bookings') > 0) {
+        //timeoutCallback(compileListView);
     }
 });

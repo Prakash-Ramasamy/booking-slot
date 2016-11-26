@@ -1,10 +1,8 @@
 <!DOCTYPE HTML>
 <html>
-
 <head>
     <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
     <link rel="stylesheet" href="css/font-awesome.min.css" />
     <link rel="stylesheet" href="js/jquery-mobile/jquery.mobile-1.4.5.min.css" />
     <link rel="stylesheet" href="js/waves/waves.min.css" />
@@ -12,11 +10,10 @@
     <link rel="stylesheet" href="css/nativedroid2.css" />
     <link rel="stylesheet" href="css/app.css" />
     <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/handlebars-v4.0.5.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
-
     <style>
         /* Prevent FOUC */
-        
         body {
             opacity: 0;
         }
@@ -66,7 +63,7 @@
             <div class="row">
                 <div class="col-xs-6">
                     <div class="nd2-card">
-                        <a href="previous-bookings.html" class="ui-btn clr-btn-indigo extra-lg-btn ui-btn-icon-block waves-effect waves-button waves-effect waves-button">
+                        <a onclick="javascript:compileListView();" href="previous-bookings.html" class="ui-btn clr-btn-indigo extra-lg-btn ui-btn-icon-block waves-effect waves-button waves-effect waves-button">
                             <i class="zmdi zmdi-file-text"></i> Your Bookings
                         </a>
                     </div>
@@ -105,5 +102,4 @@
     <script src="js/nativedroid2.js"></script>
     <script src="nd2settings.js"></script>
 </body>
-
 </html>

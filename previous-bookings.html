@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/css/nativedroid2.css" />
     <link rel="stylesheet" type="text/css" href="css/app.css" />
     <script src="js/jquery-2.1.4.min.js"></script>
+	<script src="js/handlebars-v4.0.5.js"></script>    
     <script type="text/javascript" src="/js/app.js"></script>
 
     <style>
@@ -46,18 +47,21 @@
             </a>
             <h1 class="wow fadeIn" data-wow-delay='0.4s'>Your Bookings</h1>
         </div>
-
+        <script id="list-template" type="text/x-handlebars-template">
+            {{#each this}}
+            <li class="ui-li-has-thumb ui-first-child ui-last-child">
+                <a  href="javascript:;"  class="ui-btn waves-effect waves-button">
+                    <img src="img/parking-icon.png" class="ui-thumbnail ui-thumbnail-circular">
+                    <h2>{{vehicleNo}}</h2>
+                    <p>{{bookinTime}}</p>
+                </a>
+            </li>
+            {{/each}}
+        </script>
         <div role="main" class="ui-content wow fadeIn" data-inset="false" data-wow-delay="0.2s">
-
-
-            
-
-
+            <ul data-role="listview" id="list-view-content" data-icon="false"></ul>
         </div>
-
     </div>
-
-
     <script src="js/jquery-ui-1.11.4.min.js"></script>
     <script src="js/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/waves/waves.min.js"></script>
