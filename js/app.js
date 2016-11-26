@@ -403,7 +403,7 @@ function updateData(item, key, value, obj) {
             }
         });
         jsonStrData = JSON.stringify(jsonData);
-        localStorage.setItem(key, jsonStrData);
+        localStorage.setItem(item, jsonStrData);
         return jsonData;
     }
 }
