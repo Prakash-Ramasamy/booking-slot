@@ -30,86 +30,6 @@
             //$("#greeting_msg span").html(data.name);
         };
         checkLogin(callback);
-        
-        //move the below to app.js
-        
-        $(document).on("popupafteropen", "#popupDialog",function( event, ui ) {
-            resetCPasswdForm();
-        }); 
-        
-        function resetCPasswdForm(){
-            var theForm = $("#cpasswd_form");
-            theForm.find("#opassword").val("");
-            theForm.find("#password").val("");
-            theForm.find("#cpassword").val("");            
-        }
-        
-        function updatePassword(){
-            var theForm = $("#cpasswd_form");
-            var key = "users";
-            var usernameField = "email";
-            var data = localStorage.getItem(key);
-            var userData = sessionStorage.getItem("logged_user");
-            jsonData = JSON.parse(data);
-            var user =  JSON.parse(userData);
-            var opasswd = theForm.find("#opassword").val();
-            console.log( opasswd +" --- " + user.password);
-            if(opasswd != user.password){
-                alert("Wrong Password");
-                return false;
-            } else {
-                user.password = theForm.find("#password").val();
-                user.cpassword = theForm.find("#cpassword").val();
-                if(user.password == "" || user.password != user.cpassword){
-                    alert("Password empty or doesnt match");
-                    return false;
-                }            
-                console.log(opasswd);
-                console.log(user);
-                updateData("users", "email", user.email, user);
-                var userStrData = JSON.stringify(user);
-                sessionStorage.setItem("logged_user", userStrData);
-                $("#popupDialog").popup("close"); 
-            }
-            return validUser;
-        }
-        
-        function updateProfile() {
-            var theForm = $("#profile_form");
-            var key = "users";
-            var usernameField = "email";
-            var data = localStorage.getItem(key);
-            var userData = sessionStorage.getItem("logged_user");
-            jsonData = JSON.parse(data);
-            var user =  JSON.parse(userData);
-            user.name = theForm.find("#name").val();
-            user.mobileNo = theForm.find("#mobile_no").val();
-            updateData("users", "email", user.email, user);
-            var userStrData = JSON.stringify(user);
-            sessionStorage.setItem("logged_user", userStrData);
-            return validUser;
-        }
-
-        ///update field - item, key, obj
-        function updateData(item, key, value, obj){
-            var data = localStorage.getItem(item);
-            if (data == null) {
-                return false;
-            } else {
-                jsonData = JSON.parse(data);
-                $(jsonData).each(function (i, e) {
-                    if (e[key] == value) {
-                        //update the data
-                        jsonData[i] = obj;
-                        //double checking the primary field
-                        jsonData[i][key] = value;
-                    }
-                });
-                jsonStrData = JSON.stringify(jsonData);
-                localStorage.setItem(key, jsonStrData);
-                return jsonData;
-            }
-        }
     </script>
 </head>
 
@@ -120,7 +40,7 @@
             <a href="dashboard.html" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'>
                 <i class="zmdi zmdi-chevron-left"></i>
             </a>
-            <a href="#bottomsheetblock" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s'>
+            <a href="javascript:logout();" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s'>
                 <i class="zmdi zmdi-close-circle-o"></i>
             </a>
             <h1 class="wow fadeIn" data-wow-delay='0.4s'>Profile</h1>

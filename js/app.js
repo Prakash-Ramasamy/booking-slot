@@ -59,14 +59,14 @@ var app = {
 };
 
 var validation = {
-    isBlank : function(str) {
+    isBlank: function (str) {
         return (!str || /^\s*$/.test(str));
     },
-    isEmail: function(email) {
+    isEmail: function (email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return !re.test(email);
     },
-    isDuplicate: function(field, value){
+    isDuplicate: function (field, value) {
         var key = "users";
         var data = localStorage.getItem(key);
         var duplicate = false;
@@ -77,7 +77,7 @@ var validation = {
             jsonData = JSON.parse(data);
             $(jsonData).each(function (i, e) {
                 if (e[field] == value) {
-                    console.log("Duplicate field - " , e[field]);
+                    console.log("Duplicate field - ", e[field]);
                     duplicate = duplicate || true;
                 } else {
                     duplicate = duplicate || false;
@@ -89,27 +89,27 @@ var validation = {
 };
 
 /*Created by Prakash*/
-function CheckAvailability(){
+function CheckAvailability() {
     setTimeout(function myFunction() {
-        try{
-    var slots = JSON.parse(localStorage.bookslot)
-    var currentUser = JSON.parse(sessionStorage.logged_user).email;
-    var bookedSlots =[];
-    for(var i=0;i<slots.length;i++){
-        if(slots[i].userName == currentUser && slots[i].outTime == ""){
-            bookedSlots.push(slots[i].slotID);
-        }
-    }
-    for(var i=0;i<bookedSlots.length;i++){
-        document.getElementById(bookedSlots[i]).className = "btn-disable-sameuser"    
-    }
-        }catch(err){}
-}, 1500)
-    
+        try {
+            var slots = JSON.parse(localStorage.bookslot)
+            var currentUser = JSON.parse(sessionStorage.logged_user).email;
+            var bookedSlots = [];
+            for (var i = 0; i < slots.length; i++) {
+                if (slots[i].userName == currentUser && slots[i].outTime == "") {
+                    bookedSlots.push(slots[i].slotID);
+                }
+            }
+            for (var i = 0; i < bookedSlots.length; i++) {
+                document.getElementById(bookedSlots[i]).className = "btn-disable-sameuser"
+            }
+        } catch (err) { }
+    }, 1500)
+
 }
 function bookSlot() {
     var currentUserInfo = JSON.parse(sessionStorage.logged_user)
-    var date =new Date();
+    var date = new Date();
     var slot = {
         userName: currentUserInfo.email,
         vehicleNo: getQueryVariable('veh_no'),
@@ -117,8 +117,8 @@ function bookSlot() {
         outTime: "",
         slotID: getQueryVariable('id'),
         IsIn: 0,
-        preAmount:30,
-        finalAmount:""
+        preAmount: 30,
+        finalAmount: ""
     }
     saveData("bookslot", slot);
     window.location = "dashboard.html"
@@ -130,19 +130,19 @@ function setSlotID(id) {
 
 function boolSlotRedirect() {
     var veh_no = $("#vehi_no").val();
-    window.location = "pay.html?id="+selectedSlot+"&veh_no="+veh_no;
+    window.location = "pay.html?id=" + selectedSlot + "&veh_no=" + veh_no;
 }
 /*Created by Prakash*/
 
 function registerUser(theForm) {
     var user = {
-        name: $(theForm).find("#name").val(),                   
+        name: $(theForm).find("#name").val(),
         email: $(theForm).find("#email").val(),
         mobileNo: $(theForm).find("#mobile_no").val(),
         password: $(theForm).find("#password").val(),
         cpassword: $(theForm).find("#cpassword").val(),
     };
-    if(!validateRegistration(user)){
+    if (!validateRegistration(user)) {
         return false;
     }
     saveData("users", user);
@@ -150,36 +150,36 @@ function registerUser(theForm) {
     return false;
 }
 
-function validateRegistration(user){    
-    if(validation.isBlank(user.name)){
+function validateRegistration(user) {
+    if (validation.isBlank(user.name)) {
         showToast("Name field is empty", "Cancel", "lime");
         return false;
-    }     
-    if(validation.isBlank(user.email)){
+    }
+    if (validation.isBlank(user.email)) {
         showToast("Email field is empty", "Cancel", "lime");
         return false;
     }
-    if(validation.isEmail(user.email)){
+    if (validation.isEmail(user.email)) {
         showToast("Invalid Email address", "Cancel", "lime");
         return false;
     }
-    if(validation.isDuplicate("email", user.email)){
+    if (validation.isDuplicate("email", user.email)) {
         showToast("Email Address already exists", "Cancel", "lime");
         return false;
     }
-    if(validation.isBlank(user.mobileNo)){
+    if (validation.isBlank(user.mobileNo)) {
         showToast("Mobile number field is empty", "Cancel", "lime");
         return false;
-    }    
-    if(validation.isBlank(user.password)){
+    }
+    if (validation.isBlank(user.password)) {
         showToast("Password field is empty", "Cancel", "lime");
         return false;
     }
-    if(validation.isBlank(user.cpassword)){
+    if (validation.isBlank(user.cpassword)) {
         showToast("Confirm password field is empty", "Cancel", "lime");
         return false;
     }
-    if(user.password != user.cpassword){
+    if (user.password != user.cpassword) {
         showToast("Password is not matching", "Cancel", "lime");
         return false;
     }
@@ -202,11 +202,11 @@ function saveData(key, value) {
 function login(theForm) {
     var username = $(theForm).find("#username").val();
     var password = $(theForm).find("#password").val();
-    if(validation.isBlank(username)){
-        showToast("Invalid Username", "Cancel", "lime");        
+    if (validation.isBlank(username)) {
+        showToast("Invalid Username", "Cancel", "lime");
         return false;
     }
-    if(validation.isBlank(password)){
+    if (validation.isBlank(password)) {
         showToast("Invalid Password", "Cancel", "lime");
         return false;
     }
@@ -303,6 +303,85 @@ $(document).ready(function () {
     }
 });
 
-$("#book-slots-table tbody td").on("click", function(e){
+$("#book-slots-table tbody td").on("click", function (e) {
     $(this).toggleClass("booked");
 });
+
+
+$(document).on("popupafteropen", "#popupDialog", function (event, ui) {
+    resetCPasswdForm();
+});
+
+function resetCPasswdForm() {
+    var theForm = $("#cpasswd_form");
+    theForm.find("#opassword").val("");
+    theForm.find("#password").val("");
+    theForm.find("#cpassword").val("");
+}
+
+function updatePassword() {
+    var theForm = $("#cpasswd_form");
+    var key = "users";
+    var usernameField = "email";
+    var data = localStorage.getItem(key);
+    var userData = sessionStorage.getItem("logged_user");
+    jsonData = JSON.parse(data);
+    var user = JSON.parse(userData);
+    var opasswd = theForm.find("#opassword").val();
+    console.log(opasswd + " --- " + user.password);
+    if (opasswd != user.password) {
+        alert("Wrong Password");
+        return false;
+    } else {
+        user.password = theForm.find("#password").val();
+        user.cpassword = theForm.find("#cpassword").val();
+        if (user.password == "" || user.password != user.cpassword) {
+            alert("Password empty or doesnt match");
+            return false;
+        }
+        console.log(opasswd);
+        console.log(user);
+        updateData("users", "email", user.email, user);
+        var userStrData = JSON.stringify(user);
+        sessionStorage.setItem("logged_user", userStrData);
+        $("#popupDialog").popup("close");
+    }
+    return validUser;
+}
+
+function updateProfile() {
+    var theForm = $("#profile_form");
+    var key = "users";
+    var usernameField = "email";
+    var data = localStorage.getItem(key);
+    var userData = sessionStorage.getItem("logged_user");
+    jsonData = JSON.parse(data);
+    var user = JSON.parse(userData);
+    user.name = theForm.find("#name").val();
+    user.mobileNo = theForm.find("#mobile_no").val();
+    updateData("users", "email", user.email, user);
+    var userStrData = JSON.stringify(user);
+    sessionStorage.setItem("logged_user", userStrData);
+    return validUser;
+}
+
+///update field - item, key, obj
+function updateData(item, key, value, obj) {
+    var data = localStorage.getItem(item);
+    if (data == null) {
+        return false;
+    } else {
+        jsonData = JSON.parse(data);
+        $(jsonData).each(function (i, e) {
+            if (e[key] == value) {
+                //update the data
+                jsonData[i] = obj;
+                //double checking the primary field
+                jsonData[i][key] = value;
+            }
+        });
+        jsonStrData = JSON.stringify(jsonData);
+        localStorage.setItem(key, jsonStrData);
+        return jsonData;
+    }
+}
