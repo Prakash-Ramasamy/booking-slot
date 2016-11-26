@@ -28,7 +28,7 @@ var app = {
         $("#main-content").hide();
         this.bindEvents();
         //bind no cache for dom
-        $(document).bind("mobileinit", function(){
+        $(document).bind("mobileinit", function () {
             $.mobile.page.prototype.options.domCache = false;
         });
     },
@@ -145,12 +145,14 @@ function registerUser(theForm) {
         mobileNo: $(theForm).find("#mobile_no").val(),
         password: $(theForm).find("#password").val(),
         cpassword: $(theForm).find("#cpassword").val(),
+        isAdmin: 0,
+        wallet: 50
     };
     if (!validateRegistration(user)) {
         return false;
     }
     saveData("users", user);
-    window.location = "register.html?register=1";
+    window.location = "login.html?register=1";
     return false;
 }
 
@@ -216,7 +218,11 @@ function login(theForm) {
     }
     if (checkCreds(username, password)) {
         //valid Log-in
-        window.location = "dashboard.html?login=1";
+        if(username == "admin"){
+            window.location = "admin-dashboard.html?login=1";
+        } else {
+            window.location = "dashboard.html?login=1";
+        }
     } else {
         //Invalid Log-in
         showInvalidCredsToast();
@@ -390,9 +396,37 @@ function updateData(item, key, value, obj) {
     }
 }
 
-$( document ).bind( "pageload", function( event, data ){
+function timeoutCallback(callback){
+    setTimeout(callback(), 1500);
+}
+
+$(document).bind("pageload", function (event, data) {
     console.log("---------------------");
     console.log(event, data);
     console.log(data.dataUrl + " - page loaded ");
-    //have to move all page load events
+    if (data.dataUrl.search('profile') > 0) {
+        console.log("Profile page");
+        var callback = function(){                
+            data = JSON.parse(sessionStorage.getItem('logged_user'));
+            console.log(data);
+            $("#name").val(data.name);
+            $("#email").val(data.email);
+            $("#mobile_no").val(data.mobileNo);
+        };
+        timeoutCallback(callback);
+    } else if (data.dataUrl.search('login') > 0) {
+        //insert admin record
+        if(!checkCreds("admin", "admin")){
+            var adminUser = {
+                name: "Admin",
+                email: "admin",
+                mobileNo: "",
+                password: "admin",
+                cpassword: "admin",
+                isAdmin: 1,
+                wallet: 50
+            };
+            saveData("users", adminUser);         
+        }     
+    }
 });
